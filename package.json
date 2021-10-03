@@ -1,0 +1,30 @@
+{
+  "name": "hacknight",
+  "version": "1.0.0",
+  "description": "Backend api built for Hacknight Hackathon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swaaz/Hacknight.git"
+  },
+  "keywords": [
+    "Express.js",
+    "Node.js",
+    "MongoDB",
+    "Mongoose"
+  ],
+  "author": "Swaaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swaaz/Hacknight/issues"
+  },
+  "homepage": "https://github.com/swaaz/Hacknight#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.0.7",
+    "nodemon": "^2.0.13"
+  }
+}

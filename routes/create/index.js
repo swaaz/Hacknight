@@ -1,18 +1,36 @@
 const express = require('express');
 const router = express.Router();
 const sendMailIndividual =  require('../../helper/index');
+const IndividualRegistration = require('../../models/IndividualRegistration');
 
-router.post('/individual' , (req, res) => {
-    const data = {
+router.post('/individual' , async (req, res) => {
+    const data = new IndividualRegistration({
         name: req.body.name,
-        age : req.body.age
+        email: req.body.email,
+        college: req.body.college,
+        phone: req.body.phone,
+        year: req.body.year,
+        discordUsername: req.body.discordUsername,
+        githubUsername: req.body.githubUsername
+    });
+    let scores ;
+    try{
+		scores = await IndividualRegistration.find({ "name" : data.name, "email" : data.email })
+	}
+	catch(err){
+		res.json({message: err.message})
+	}
+    if(!scores.length){
+        try{
+            const newScore = await data.save()
+            sendMailIndividual(data.email);
+            res.status(201).json({ message: "Registered Successfully"});
+        }
+        catch(err){
+            res.status(400).json({message: err.message})
+        }
     }
-    console.log(req.body);
-    // res.status(201).json({ message: "Team Created" , teamUniqueId : "34734897593478"});
-
-    sendMailIndividual('swasthiks.is18@sahyadri.edu.in');
-
-    res.send(req.body)
+    else res.status(403).json({message: "Already Registered"});
 })
 
 module.exports = router;

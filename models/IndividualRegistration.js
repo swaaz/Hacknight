@@ -23,7 +23,6 @@ const IndividualRegistrationSchema = new mongoose.Schema({
     },
     discordUsername: {
         type: String,
-        required: true
     },
     githubUsername: {
         type: String,

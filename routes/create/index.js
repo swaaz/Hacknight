@@ -4,6 +4,7 @@ const sendMailIndividual =  require('../../helper/index');
 const IndividualRegistration = require('../../models/IndividualRegistration');
 
 router.post('/individual' , async (req, res) => {
+    console.log(req.body);
     const data = new IndividualRegistration({
         name: req.body.name,
         email: req.body.email,
@@ -22,11 +23,15 @@ router.post('/individual' , async (req, res) => {
 	}
     if(!scores.length){
         try{
-            const newScore = await data.save()
-            sendMailIndividual(data.email);
-            res.status(201).json({ message: "Registered Successfully"});
+            const newScore = await data.save(( err, data) => {
+                console.log(data.id);
+
+                res.status(201).json({ message: "Registered Successfully", id: data.id });
+            })
+            // sendMailIndividual(data.email);
         }
         catch(err){
+            console.log(err);
             res.status(400).json({message: err.message})
         }
     }

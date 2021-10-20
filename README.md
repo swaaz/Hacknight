@@ -1,21 +1,24 @@
-# Hacknight Backend
-Backend built for Hacktoberfest Hacknight 2k21
+
+![Website Cover](https://user-images.githubusercontent.com/42874695/138165670-8b10a13e-ac49-4e98-a37b-8a5172ec1915.png)
+
+
+<h1 align="center" >Hacknight Backend Built using Restful API</h1>
 
 ## API Documentations
 
-### Fetch Detials of all the participants
+### - Fetch Detials of all the participants
 ### ```/search/individuals/all```
 
-### Fetch Detials of all the teams
+### - Fetch Detials of all the teams
 ### ```/search/teams/all```
 
-### Fetch Detials of one participant
+### - Fetch Detials of one participant
 ### ```/search/individual/:registreationID```
 
-### Fetch Detials of one team
+### - Fetch Detials of one team
 ### ```/search/team/:registreationID```
 
-### Create Individual Registreation
+### - Create Individual Registreation
 ### ```/create/individual```
 Body of the API Request
 ```
@@ -31,7 +34,7 @@ Body of the API Request
 
 ```
 
-### Create Team Registreation
+### - Create Team Registreation
 ### ```/create/team```
 Body of the API Request
 ```

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sendMailIndividual =  require('../../helper/index');
 const IndividualRegistration = require('../../models/IndividualRegistration');
+const TeamRegistration = require('../../models/teamRegistration');
 
 router.post('/individual' , async (req, res) => {
     const data = new IndividualRegistration({
@@ -13,28 +14,52 @@ router.post('/individual' , async (req, res) => {
         discordUsername: req.body.discordUsername,
         githubUsername: req.body.githubUsername
     });
-    let scores ;
+    let val ;
     try{
-		scores = await IndividualRegistration.find({ "name" : data.name, "email" : data.email })
+		val = await IndividualRegistration.find({ "name" : data.name, "email" : data.email })
 	}
 	catch(err){
 		res.json({message: err.message})
 	}
-    if(!scores.length){
+    if(!val.length){
         try{
             const newScore = await data.save(( err, data) => {
-                console.log(data.id);
 
                 res.status(201).json({ message: "Registered Successfully", id: data.id });
-            })
+            });
             // sendMailIndividual(data.email);
+            console.log(newScore);
         }
         catch(err){
-            console.log(err);
+            // console.log(err);
             res.status(400).json({message: err.message})
         }
     }
     else res.status(403).json({message: "Already Registered"});
+});
+
+router.post('/team', async (req, res) => {
+    // console.log(req.body);
+    const data = new TeamRegistration({
+        teamName: req.body.teamName,
+        member1 : req.body.member1,
+        member2 : req.body.member2,
+        member3 : req.body.member3,
+        member4 : req.body.member4,
+    });
+    // console.log(data);
+
+    try{
+        const newVal = await data.save(( err, data) => {
+            // console.log(data);
+
+            res.status(201).json({ message: "Registered Successfully", teamId : data._id});
+        })
+    }
+    catch(err){
+        res.status(400).json({message: err.message})
+    }
+
 })
 
 module.exports = router;

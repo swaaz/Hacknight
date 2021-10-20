@@ -49,7 +49,7 @@ router.get('/individuals/all', async (req, res) => {
     }
 })
 
-router.get('/team/all', async (req, res) => {
+router.get('/teams/all', async (req, res) => {
     try
     {
         const data = await teamRegistration.find({});

@@ -10,7 +10,6 @@ const PORT = process.env.PORT || 8000 ;
 
 app.use(express.json());
 
-console.log(process.env.FRONTEND_URL)
 
 app.use(cors());
 var corsOptions = {

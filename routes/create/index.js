@@ -4,7 +4,6 @@ const sendMailIndividual =  require('../../helper/index');
 const IndividualRegistration = require('../../models/IndividualRegistration');
 
 router.post('/individual' , async (req, res) => {
-    console.log(req.body);
     const data = new IndividualRegistration({
         name: req.body.name,
         email: req.body.email,

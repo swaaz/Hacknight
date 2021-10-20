@@ -19,4 +19,16 @@ router.get('/individual/:registerID', async (req, res) => {
 
 })
 
+router.get('/individuals/all', async (req, res) => {
+    try
+    {
+        const data = await IndividualRegistration.find({});
+        res.status(200).json(data);
+    }
+    catch(err)
+    {
+        res.json({message: err.message})
+    }
+})
+
 module.exports = router;
